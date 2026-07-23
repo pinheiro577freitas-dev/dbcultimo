@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA PENAL | Central de Justiça</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    
+    <div class="terminal-shell">
+        <!-- Main Panel -->
+        <main class="content-view">
+            <header class="header">
+                <div class="brand-info">
+                    <div class="badge">OFICIAL</div>
+                    <div class="system-status">
+                        <span class="status-dot"></span>
+                        TERMINAL ATIVO
+                    </div>
+                </div>
+                <h1>CONTROLO DE INFRAÇÕES</h1>
+                <div class="search-bar">
+                    <input type="text" id="crimeSearch" placeholder="Pesquisar por nome do crime, artigo ou lei...">
+                </div>
+            </header>
+
+            <nav class="category-tabs" id="categoryNav">
+                <!-- Tabs injected here -->
+            </nav>
+
+            <div class="viewport">
+                <div class="crimes-grid" id="crimesGrid">
+                    <!-- Crimes injected here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar: The Registration Panel -->
+        <aside class="calc-sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-header">
+                    <h2>REGISTO DE OCORRÊNCIA</h2>
+                    <button class="btn-clear" id="clearAll" title="Limpar Tudo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                    </button>
+                </div>
+
+                <div class="registration-list" id="selectedCrimes">
+                    <div class="empty-placeholder">
+                        <div class="icon">⚖️</div>
+                        <p>Selecione infrações no painel lateral para começar o cálculo.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-totals">
+                    <div class="total-line">
+                        <span>VALOR TOTAL DAS COIMAS</span>
+                        <span id="totalFine">0€</span>
+                    </div>
+                    <div class="total-line accent">
+                        <span>PENA DE PRISÃO TOTAL</span>
+                        <span id="totalJail">0 meses</span>
+                    </div>
+                </div>
+
+                <div class="report-composer">
+                    <label>RELATÓRIO DE FACTOS (OPCIONAL)</label>
+                    <textarea id="extraNotes" placeholder="Descreva as circunstâncias da ocorrência..."></textarea>
+                </div>
+
+                <button class="btn-submit" id="generateTicket">FINALIZAR E GERAR RELATÓRIO</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Quantities/Details -->
+    <div class="overlay hidden" id="configModal">
+        <div class="modal">
+            <h3 id="modalTitle">Configurar Crime</h3>
+            <div class="modal-body" id="modalBody">
+                <!-- Inputs injected dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelModal">CANCELAR</button>
+                <button class="btn-primary" id="saveModal">CONFIRMAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Report Modal -->
+    <div class="overlay hidden" id="ticketModal">
+        <div class="modal report-modal">
+            <header class="modal-header">
+                <h3>SISTEMA CENTRAL DE JUSTIÇA - RELATÓRIO</h3>
+                <button class="btn-remove" onclick="document.getElementById('ticketModal').classList.add('hidden')" style="font-size: 24px;">&times;</button>
+            </header>
+            <div class="modal-body">
+                <div id="ticketPrintArea" class="ticket-document">
+                    <!-- Final report structure -->
+                </div>
+            </div>
+            <footer class="modal-footer" style="padding: 20px 40px; background: var(--bg-panel); border-top: 1px solid var(--glass-border);">
+                <button class="btn-secondary" onclick="document.getElementById('ticketModal').classList.add('hidden')">FECHAR VISUALIZAÇÃO</button>
+                <button class="btn-primary" onclick="window.print()">IMPRIMIR DOCUMENTO / PDF</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="crimes.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
